@@ -1,0 +1,8 @@
+openai
+langchain
+langchain-community
+gradio
+numpy
+requests
+python-dotenv
+jupyter

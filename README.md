@@ -14,7 +14,8 @@ A demonstration project that shows how to build a hybrid Retrieval-Augmented Gen
 - Notebook-oriented: easy to run in Google Colab or locally.
 
 ## Files
-- `RAG.ipynb` — Main notebook demonstrating setup, real-time search integration, the hybrid RAG system, chatbot, caching, and example tests.
+- `HYBRID RAG.ipynb` — Main notebook demonstrating setup, real-time search integration, the hybrid RAG system, chatbot, caching, and example tests.
+- `app.py` — Standalone script launching the Gradio chatbot web interface directly.
 
 ## Requirements
 - Python 3.8+
@@ -48,8 +49,8 @@ Important: remove any hard-coded API keys from the code and replace them with en
 ## Usage
 
 ### Google Colab
-1. Open the notebook via the Colab link at the top of `RAG.ipynb` or open in Colab:
-   [Open in Colab](https://colab.research.google.com/github/LIKHITHADITHYA/Open-Source-llm-with-RAG-/blob/main/RAG.ipynb)
+1. Open the notebook via the Colab link at the top of `HYBRID RAG.ipynb` or open in Colab:
+   [Open in Colab](https://colab.research.google.com/github/LIKHITHADITHYA/Nvidia-Llama-RAG/blob/main/HYBRID%20RAG.ipynb)
 2. Set your API keys using Colab's UI or at the top of the notebook:
    ```python
    import os
@@ -72,7 +73,11 @@ Important: remove any hard-coded API keys from the code and replace them with en
    ```bash
    jupyter notebook
    ```
-4. Open `RAG.ipynb` and set environment variables (or use a local `.env` and load it safely).
+4. Rename `.env.example` to `.env` and fill in your API keys.
+5. Open `HYBRID RAG.ipynb` or run the standalone UI:
+   ```bash
+   python app.py
+   ```
 
 ## Typical workflow in the notebook
 1. Install and import dependencies (langchain and any wrappers).

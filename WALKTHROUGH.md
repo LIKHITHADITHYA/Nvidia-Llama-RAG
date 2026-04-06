@@ -9,7 +9,8 @@ This project is a Jupyter notebook prototype for a hybrid Retrieval-Augmented Ge
 This file explains how to set up, fix the small API key issue, and run the notebook locally.
 
 ## Files
-- `RAG.ipynb` — main notebook (open this in Jupyter/Colab).
+- `HYBRID RAG.ipynb` — main notebook (open this in Jupyter/Colab).
+- `app.py` — Standalone script launching the Gradio chatbot web interface directly.
 
 ## Prerequisites
 - macOS or Linux, Python 3.10+ recommended.
@@ -25,8 +26,7 @@ source .venv/bin/activate
 Install the main libraries used in the notebook:
 
 ```bash
-pip install -U pip
-pip install openai langchain gradio langchain-community numpy requests
+pip install -r requirements.txt
 ```
 
 Note: package names and versions may change over time. If you hit import errors, try `pip install langchain-community` or check the import path shown in the notebook.
@@ -43,23 +43,9 @@ export NV_API_KEY="your-nv-api-key-here"
 export SERPAPI_API_KEY="your-serpapi-key-here"
 ```
 
-## Quick fix for the notebook error (missing `api_key`)
+## Fixed notebook environment configuration
 
-The notebook currently contains an incomplete line `api_key =` (syntax error). Replace the client init block with a secure env-var-based snippet.
-
-Replace the existing lines with:
-
-```python
-from openai import OpenAI
-import os
-
-client = OpenAI(
-    base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.environ.get("NV_API_KEY")
-)
-```
-
-This avoids hardcoding secrets and resolves the syntax error seen in the notebook.
+The notebook has been patched to gracefully fall back to local `os.environ` or `.env` files via `python-dotenv` if `google.colab` is not detected. This means the notebook runs seamlessly in Colab (using Secrets) and locally (using `.env`).
 
 ## How to open and run the notebook
 
@@ -71,13 +57,13 @@ jupyter lab
 jupyter notebook
 ```
 
-2. Open `RAG.ipynb` and run cells from top to bottom. The notebook is organized into steps — install/import, search wrapper, RAG function, experiments, and Gradio UI. Run sequentially.
+2. Open `HYBRID RAG.ipynb` and run cells from top to bottom. The notebook is organized into steps — install/import, search wrapper, RAG function, experiments, and Gradio UI. Run sequentially.
 
 ## Running the Gradio demo (locally)
 
 If you reach the Gradio portion, run that cell. On a local machine you may need to set `share=False` in `demo.launch()`; in Colab the notebook auto-enables `share=True`.
 
-Example: open a terminal and run the notebook (or execute the Gradio cell). If you prefer a standalone script, extract the Gradio code into `app.py` and run:
+Example: You can run the extracted UI via the standalone script:
 
 ```bash
 python app.py
@@ -91,16 +77,6 @@ python app.py
 
 ## Security
 
-- Never commit API keys to git. Use environment variables or a secrets manager.
-
-## Next steps / suggestions
-
-- Optionally create a `requirements.txt` for reproducible env.
-- Add a small wrapper script that loads env variables and launches Jupyter with the correct env.
-
-If you want, I can:
-- add a `requirements.txt`, or
-- patch `RAG.ipynb` to replace the incomplete `api_key` line automatically.
+- Never commit API keys to git. Use environment variables, a `.env` file, or a secrets manager.
 
 ---
-Created to make the notebook easier to run and understand. Tell me which follow-up you'd like.
