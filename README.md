@@ -132,12 +132,3 @@ MIT License
 
 ## Contact
 If you have questions, open an issue in the repo or contact the maintainer (LIKHITHADITHYA) via GitHub.
-
-## Model Context Protocol (MCP) Integration
-This repository natively supports the **Google Colab Model Context Protocol (MCP)**, allowing local AI frontends (such as Cursor, Windsurf, or Claude Desktop) to execute Jupyter environments dynamically inside Google Colab's cloud infrastructure.
-
-To connect your AI client to this repository's Colab scope:
-1. Ensure `uv` is installed (`brew install uv`).
-2. Point your AI frontend's MCP settings to the provided `mcp_config.json` inside the root of this repository.
-
-*Warning: If migrating local `.env` logic to the Colab MCP, ensure your client pushes necessary environment keys to the remote runtime. Runtimes may reset due to idle timeouts.*
