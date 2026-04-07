@@ -120,7 +120,7 @@ def chat_interface(message, history):
     return hybrid_rag_system(message)
 
 # Build the Gradio interface
-with gr.Blocks(theme=gr.themes.Soft()) as demo:
+with gr.Blocks() as demo:
     gr.Markdown("# 🚀 Nvidia LLaMA Hybrid RAG Chatbot")
     gr.Markdown("A hybrid RAG system using `nvidia/llama-3.3-nemotron-super-49b-v1.5` and `SerpAPI` for real time search grounding.")
     
@@ -135,4 +135,4 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
     )
 
 if __name__ == "__main__":
-    demo.launch(server_port=7860, share=False)
+    demo.launch(server_port=7861, share=False)
